@@ -138,7 +138,7 @@ CTA Button: "Get Your Free Estimate"
 Mobile: Full-width, 60px height
 
 Social Proof Section
-Headline: "What Rural NZ Builders Are Saying"
+Headline: "What our customers are saying"
 Three testimonial cards:
 Mobile: Swipeable carousel OR stacked full-width cards
 Testimonial 1:
