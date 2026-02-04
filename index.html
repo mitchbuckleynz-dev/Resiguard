@@ -25,9 +25,20 @@
         <div class="container">
             <div class="header__content">
                 <div class="header__branding">
-                    <img src="images/Resiguard-logo.png" alt="Resiguard" class="header__logo">
+                    <picture>
+                        <!-- Dark Mode Logo -->
+                        <source srcset="images/Resiguard-logo-WHITE.png" media="(prefers-color-scheme: dark)">
+                        <!-- Default Light Mode Logo -->
+                        <img src="images/Resiguard-logo.png" alt="Resiguard" class="header__logo">
+                    </picture>
                     <p class="header__tagline">Because home is everything</p>
                 </div>
+                <!-- Header Navigation -->
+                <nav class="header__nav">
+                    <a href="#how-it-works">How It Works</a>
+                    <a href="#testimonials">Reviews</a>
+                    <a href="#faq">FAQ</a>
+                </nav>
                 <a href="#estimate-form" class="btn btn--primary btn--header">Get Free Estimate</a>
             </div>
         </div>
@@ -36,7 +47,7 @@
     <!-- Hero Section -->
     <section class="hero" id="hero">
         <div class="container">
-            <div class="hero__content">
+            <div class="hero__content animate-on-scroll">
                 <h1 class="hero__title">Building in Rural NZ? Save $15,000+ on Water Tank Requirements</h1>
                 <p class="hero__subtitle">How a Home Sprinkler System Reduces Your Council Fire Water Requirement from
                     45,000L to Just 7,000L</p>
@@ -60,7 +71,7 @@
                 </div>
             </div>
 
-            <div class="hero__image">
+            <div class="hero__image animate-on-scroll delay-200">
                 <img src="images/hero_tank_comparison_1769819102471.png"
                     alt="Comparison: Multiple expensive 35,000L tanks vs single modest 7,000L tank with sprinkler system"
                     loading="eager">
@@ -74,7 +85,7 @@
             <h2 class="section-title">The Hidden Cost of Building Rural That Nobody Warned You About</h2>
 
             <div class="cards">
-                <div class="card">
+                <div class="card animate-on-scroll">
                     <div class="card__icon">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
                             <path
@@ -128,9 +139,9 @@
     <!-- Solution Section -->
     <section class="solution" id="solution">
         <div class="container">
-            <h2 class="section-title">There's a Better Way: Home Fire Sprinkler Systems</h2>
+            <h2 class="section-title animate-on-scroll">There's a Better Way: Home Fire Sprinkler Systems</h2>
 
-            <div class="comparison">
+            <div class="comparison animate-on-scroll">
                 <div class="comparison__card">
                     <h3 class="comparison__title">Without Sprinklers</h3>
                     <ul class="comparison__list">
@@ -155,7 +166,7 @@
                 </div>
             </div>
 
-            <div class="benefits">
+            <div class="benefits animate-on-scroll">
                 <h3 class="benefits__title">Key Benefits</h3>
                 <div class="benefits__grid">
                     <div class="benefit">
@@ -198,9 +209,9 @@
     <!-- How It Works Section -->
     <section class="how-it-works" id="how-it-works">
         <div class="container">
-            <h2 class="section-title">Simple, Smart Fire Protection</h2>
+            <h2 class="section-title animate-on-scroll">Simple, Smart Fire Protection</h2>
 
-            <div class="steps">
+            <div class="steps animate-on-scroll">
                 <div class="step">
                     <div class="step__number">1</div>
                     <div class="step__content">
@@ -350,9 +361,9 @@
     <!-- Testimonials Section -->
     <section class="testimonials" id="testimonials">
         <div class="container">
-            <h2 class="section-title">What our customers are saying</h2>
+            <h2 class="section-title animate-on-scroll">What our customers are saying</h2>
 
-            <div class="testimonial-grid">
+            <div class="testimonial-grid animate-on-scroll">
                 <div class="testimonial">
                     <img src="images/testimonial_sarah_mike_1769819177800.png" alt="Sarah & Mike T. - Coromandel"
                         class="testimonial__photo">

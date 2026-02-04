@@ -21,8 +21,8 @@ body {
     font-family: var(--font-family);
     font-size: var(--font-size-body);
     line-height: 1.6;
-    color: var(--color-text);
-    background-color: var(--color-white);
+    color: var(--text-main);
+    background-color: var(--bg-body);
 }
 
 img {
@@ -82,13 +82,62 @@ button {
     --border-radius-sm: 8px;
     --tap-target: 44px;
 
-    /* Shadows */
-    --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.05);
-    --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.1);
-    --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.12);
+    /* Shadows - Layered for depth (Pro Max style) */
+    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
 
     /* Transitions */
-    --transition: 0.3s ease;
+    --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-bounce: 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+
+    /* Semantic Tokens (Light Mode Default) */
+    --bg-body: var(--color-white);
+    --bg-surface: var(--color-white);
+    --bg-secondary: var(--color-secondary);
+    --bg-input: rgba(255, 255, 255, 0.9);
+    --text-main: var(--color-text);
+    --text-muted: var(--color-text-light);
+    --border-color: #E2E8F0;
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        /* Dark Mode Overrides (Slate Theme) */
+        --bg-body: #0F172A;
+        /* Slate 900 */
+        --bg-surface: #1E293B;
+        /* Slate 800 */
+        --bg-secondary: #020617;
+        /* Slate 950 */
+        --bg-input: #1E293B;
+
+        --text-main: #F1F5F9;
+        /* Slate 100 */
+        --text-muted: #94A3B8;
+        /* Slate 400 */
+
+        --color-primary: #38BDF8;
+        /* Sky 400 (Brighter for dark mode) */
+        --color-primary-dark: #0EA5E9;
+        /* Sky 500 */
+        --color-primary-light: #164E63;
+        /* Cyan 900 (Darker for gradients) */
+        --border-color: #334155;
+        /* Slate 700 */
+
+        /* Strengthen shadows for dark mode */
+        --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.3);
+        --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.3), 0 2px 4px -1px rgba(0, 0, 0, 0.2);
+        --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.3), 0 4px 6px -2px rgba(0, 0, 0, 0.2);
+        --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.4), 0 10px 10px -5px rgba(0, 0, 0, 0.2);
+    }
+
+    img {
+        opacity: 0.9;
+        /* Slight dimming for images in dark mode */
+    }
 }
 
 /* ===== 3. TYPOGRAPHY ===== */
@@ -107,7 +156,7 @@ h6 {
     font-size: var(--font-size-h2);
     text-align: center;
     margin-bottom: var(--spacing-lg);
-    color: var(--color-text);
+    color: var(--text-main);
 }
 
 /* ===== 4. LAYOUT & GRID SYSTEM ===== */
@@ -175,7 +224,7 @@ h6 {
 
 /* Cards */
 .card {
-    background: var(--color-white);
+    background: var(--bg-surface);
     border-radius: var(--border-radius);
     padding: var(--spacing-md);
     box-shadow: var(--shadow-md);
@@ -184,8 +233,8 @@ h6 {
 }
 
 .card:hover {
-    transform: translateY(-4px);
-    box-shadow: var(--shadow-lg);
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-xl);
 }
 
 .card__icon {
@@ -206,7 +255,7 @@ h6 {
 }
 
 .card__text {
-    color: var(--color-text-light);
+    color: var(--text-muted);
     margin-bottom: var(--spacing-xs);
 }
 
@@ -217,7 +266,7 @@ h6 {
 
 .card__list li {
     padding: var(--spacing-xs) 0;
-    color: var(--color-text-light);
+    color: var(--text-muted);
 }
 
 .card__value {
@@ -245,7 +294,7 @@ h6 {
 
 /* ===== 6. HEADER ===== */
 .header {
-    background: var(--color-white);
+    background: var(--bg-surface);
     box-shadow: var(--shadow-sm);
     position: sticky;
     top: 0;
@@ -288,7 +337,7 @@ h6 {
 
 .header__tagline {
     font-size: 11px;
-    color: var(--color-text-light);
+    color: var(--text-muted);
     font-style: normal;
     margin-top: 2px;
     text-align: center;
@@ -297,6 +346,31 @@ h6 {
 @media (min-width: 768px) {
     .header__tagline {
         font-size: 13px;
+    }
+}
+
+/* Header Navigation */
+.header__nav {
+    display: none;
+}
+
+@media (min-width: 900px) {
+    .header__nav {
+        display: flex;
+        gap: var(--spacing-md);
+        margin-right: auto;
+        margin-left: var(--spacing-lg);
+    }
+
+    .header__nav a {
+        font-weight: var(--font-weight-medium);
+        color: var(--text-muted);
+        transition: color var(--transition);
+        font-size: var(--font-size-small);
+    }
+
+    .header__nav a:hover {
+        color: var(--color-primary);
     }
 }
 
@@ -315,7 +389,7 @@ h6 {
 /* ===== 7. HERO SECTION ===== */
 .hero {
     padding: var(--spacing-xl) 0;
-    background: linear-gradient(135deg, var(--color-primary-light) 0%, var(--color-white) 100%);
+    background: linear-gradient(135deg, var(--color-primary-light) 0%, var(--bg-body) 100%);
 }
 
 .hero__content {
@@ -326,12 +400,12 @@ h6 {
 .hero__title {
     font-size: var(--font-size-hero);
     margin-bottom: var(--spacing-md);
-    color: var(--color-text);
+    color: var(--text-main);
 }
 
 .hero__subtitle {
     font-size: var(--font-size-h3);
-    color: var(--color-text-light);
+    color: var(--text-muted);
     margin-bottom: var(--spacing-lg);
     font-weight: var(--font-weight-normal);
 }
@@ -367,7 +441,7 @@ h6 {
     align-items: center;
     gap: var(--spacing-xs);
     font-size: var(--font-size-small);
-    color: var(--color-text-light);
+    color: var(--text-muted);
 }
 
 .trust-badge__icon {
@@ -384,7 +458,7 @@ h6 {
 
 .problem__hook {
     font-size: 18px;
-    color: var(--color-text);
+    color: var(--text-main);
     font-weight: var(--font-weight-medium);
     margin: var(--spacing-lg) auto;
     max-width: 700px;
@@ -394,7 +468,7 @@ h6 {
 /* ===== 9. SOLUTION SECTION ===== */
 .solution {
     padding: var(--spacing-xl) 0;
-    background-color: var(--color-secondary);
+    background-color: var(--bg-secondary);
     text-align: center;
 }
 
@@ -412,7 +486,7 @@ h6 {
 }
 
 .comparison__card {
-    background: var(--color-white);
+    background: var(--bg-surface);
     border-radius: var(--border-radius);
     padding: var(--spacing-lg);
     box-shadow: var(--shadow-md);
@@ -551,14 +625,14 @@ h6 {
 }
 
 .step__text {
-    color: var(--color-text-light);
+    color: var(--text-muted);
     margin-bottom: var(--spacing-xs);
 }
 
 /* ===== 11. FAQ SECTION ===== */
 .faq {
     padding: var(--spacing-xl) 0;
-    background-color: var(--color-secondary);
+    background-color: var(--bg-secondary);
 }
 
 .accordion {
@@ -567,7 +641,7 @@ h6 {
 }
 
 .accordion__item {
-    background: var(--color-white);
+    background: var(--bg-surface);
     border-radius: var(--border-radius-sm);
     margin-bottom: var(--spacing-sm);
     overflow: hidden;
@@ -582,6 +656,7 @@ h6 {
     text-align: left;
     font-size: 18px;
     font-weight: var(--font-weight-semibold);
+    color: var(--text-main);
     cursor: pointer;
     min-height: var(--tap-target);
     transition: background-color var(--transition);
@@ -612,7 +687,7 @@ h6 {
 
 .accordion__content p {
     padding: 0 var(--spacing-md) var(--spacing-md);
-    color: var(--color-text-light);
+    color: var(--text-muted);
     line-height: 1.8;
 }
 
@@ -636,7 +711,7 @@ h6 {
 }
 
 .testimonial {
-    background: var(--color-white);
+    background: var(--bg-surface);
     border-radius: var(--border-radius);
     padding: var(--spacing-lg);
     box-shadow: var(--shadow-md);
@@ -653,7 +728,7 @@ h6 {
 
 .testimonial__quote {
     font-size: 16px;
-    color: var(--color-text-light);
+    color: var(--text-muted);
     font-style: italic;
     margin-bottom: var(--spacing-md);
     line-height: 1.8;
@@ -661,7 +736,7 @@ h6 {
 
 .testimonial__author {
     font-weight: var(--font-weight-semibold);
-    color: var(--color-text);
+    color: var(--text-main);
     font-size: var(--font-size-small);
 }
 
@@ -685,7 +760,7 @@ h6 {
 /* ===== 13. URGENCY SECTION ===== */
 .urgency {
     padding: var(--spacing-xl) 0;
-    background: linear-gradient(135deg, var(--color-primary-light) 0%, var(--color-white) 100%);
+    background: linear-gradient(135deg, var(--color-primary-light) 0%, var(--bg-body) 100%);
     text-align: center;
 }
 
@@ -694,6 +769,7 @@ h6 {
     margin-bottom: var(--spacing-lg);
     max-width: 700px;
     margin-left: auto;
+    color: var(--text-main);
     margin-right: auto;
 }
 
@@ -718,7 +794,7 @@ h6 {
 }
 
 .urgency__scarcity {
-    background: var(--color-white);
+    background: var(--bg-surface);
     border-radius: var(--border-radius);
     padding: var(--spacing-lg);
     margin: var(--spacing-xl) auto;
@@ -745,7 +821,7 @@ h6 {
 /* ===== 14. WHAT'S INCLUDED SECTION ===== */
 .included {
     padding: var(--spacing-xl) 0;
-    background-color: var(--color-secondary);
+    background-color: var(--bg-secondary);
     text-align: center;
 }
 
@@ -756,7 +832,7 @@ h6 {
     margin: var(--spacing-lg) auto;
     max-width: 700px;
     font-weight: var(--font-weight-medium);
-    color: var(--color-text);
+    color: var(--text-main);
 }
 
 /* ===== 15. FORM SECTION ===== */
@@ -798,6 +874,47 @@ h6 {
     min-height: 50px;
     transition: border-color var(--transition);
 }
+
+.form-group input:focus {
+    outline: none;
+    border-color: var(--color-warning);
+    background: #fff;
+    box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.2);
+}
+
+/* ===== 16. ANIMATIONS ===== */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translate3d(0, 40px, 0);
+    }
+
+    to {
+        opacity: 1;
+        transform: translate3d(0, 0, 0);
+    }
+}
+
+.animate-on-scroll {
+    opacity: 0;
+}
+
+.animate-on-scroll.is-visible {
+    animation: fadeInUp 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+.delay-100 {
+    animation-delay: 0.1s;
+}
+
+.delay-200 {
+    animation-delay: 0.2s;
+}
+
+.delay-300 {
+    animation-delay: 0.3s;
+}
+
 
 .form-group input:focus {
     outline: none;
